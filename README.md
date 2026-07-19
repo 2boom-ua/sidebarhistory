@@ -1,6 +1,7 @@
 # History in Sidebar
 
 A Chrome/Edge extension that displays your browsing history in the browser's built-in side panel.
+
 [![License](https://img.shields.io/badge/license-GPLv3-red.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![Version](https://img.shields.io/badge/version-1.0-green.svg)
 
