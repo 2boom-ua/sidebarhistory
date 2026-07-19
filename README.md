@@ -14,7 +14,7 @@ A Chrome/Edge extension that displays your browsing history in the browser's bui
 - Copy, share, or delete individual history entries
 - Quick open of the full history page
 - Duplicate entries are automatically removed
-- Localized in English, Ukrainian, and Russian
+- Localized in English, Ukrainian
 
 ## Installation
 
@@ -43,7 +43,6 @@ Link will be added after publication
 The extension supports the following languages:
 - English (default)
 - Ukrainian
-- Russian
 
 The language is automatically selected based on your browser's language settings.
 
