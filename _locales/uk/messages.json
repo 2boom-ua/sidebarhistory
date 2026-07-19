@@ -1,0 +1,81 @@
+{
+  "searchPlaceholder": {
+    "message": "Пошук історії...",
+    "description": "Placeholder for search input"
+  },
+  "openHistoryTooltip": {
+    "message": "Сторінка історії",
+    "description": "Tooltip for open history button"
+  },
+  "shareTooltip": {
+    "message": "Поділитися",
+    "description": "Tooltip for share button"
+  },
+  "copyTooltip": {
+    "message": "Копіювати",
+    "description": "Tooltip for copy button"
+  },
+  "deleteTooltip": {
+    "message": "Видалити",
+    "description": "Tooltip for delete button"
+  },
+  "loadingText": {
+    "message": "Завантаження історії...",
+    "description": "Loading indicator text"
+  },
+  "nothingFound": {
+    "message": "Нічого не знайдено",
+    "description": "Text when no history items found"
+  },
+  "itemDeleted": {
+    "message": "Запис видалено",
+    "description": "Toast message when item is deleted"
+  },
+  "copied": {
+    "message": "Скопійовано!",
+    "description": "Toast message when link is copied"
+  },
+  "groupToday": {
+    "message": "Сьогодні",
+    "description": "Date group label for today"
+  },
+  "groupYesterday": {
+    "message": "Вчора",
+    "description": "Date group label for yesterday"
+  },
+  "groupEarlierThisWeek": {
+    "message": "Раніше цього тижня",
+    "description": "Date group label for earlier this week"
+  },
+  "groupLastWeek": {
+    "message": "Минулого тижня",
+    "description": "Date group label for last week"
+  },
+  "groupEarlier": {
+    "message": "Раніше",
+    "description": "Date group label for older dates"
+  },
+  "daySunday": { "message": "Неділя" },
+  "dayMonday": { "message": "Понеділок" },
+  "dayTuesday": { "message": "Вівторок" },
+  "dayWednesday": { "message": "Середа" },
+  "dayThursday": { "message": "Четвер" },
+  "dayFriday": { "message": "П'ятниця" },
+  "daySaturday": { "message": "Субота" },
+  "monthJanuary": { "message": "Січень" },
+  "monthFebruary": { "message": "Лютий" },
+  "monthMarch": { "message": "Березень" },
+  "monthApril": { "message": "Квітень" },
+  "monthMay": { "message": "Травень" },
+  "monthJune": { "message": "Червень" },
+  "monthJuly": { "message": "Липень" },
+  "monthAugust": { "message": "Серпень" },
+  "monthSeptember": { "message": "Вересень" },
+  "monthOctober": { "message": "Жовтень" },
+  "monthNovember": { "message": "Листопад" },
+  "monthDecember": { "message": "Грудень" },
+  "extensionName": { "message": "Історія" },
+  "extensionDescription": { "message": "Показує історію браузера в сайдбарі" },
+  "groupRecent": { "message": "Нещодавно" },
+  "searchMinChars": { "message": "Введіть 3+ символи для пошуку" }
+}

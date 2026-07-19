@@ -1,0 +1,81 @@
+{
+  "searchPlaceholder": {
+    "message": "Search history...",
+    "description": "Placeholder for search input"
+  },
+  "openHistoryTooltip": {
+    "message": "Open history page",
+    "description": "Tooltip for open history button"
+  },
+  "shareTooltip": {
+    "message": "Share link",
+    "description": "Tooltip for share button"
+  },
+  "copyTooltip": {
+    "message": "Copy link",
+    "description": "Tooltip for copy button"
+  },
+  "deleteTooltip": {
+    "message": "Delete",
+    "description": "Tooltip for delete button"
+  },
+  "loadingText": {
+    "message": "Loading history...",
+    "description": "Loading indicator text"
+  },
+  "nothingFound": {
+    "message": "Nothing found",
+    "description": "Text when no history items found"
+  },
+  "itemDeleted": {
+    "message": "Item deleted",
+    "description": "Toast message when item is deleted"
+  },
+  "copied": {
+    "message": "Copied!",
+    "description": "Toast message when link is copied"
+  },
+  "groupToday": {
+    "message": "Today",
+    "description": "Date group label for today"
+  },
+  "groupYesterday": {
+    "message": "Yesterday",
+    "description": "Date group label for yesterday"
+  },
+  "groupEarlierThisWeek": {
+    "message": "Earlier this week",
+    "description": "Date group label for earlier this week"
+  },
+  "groupLastWeek": {
+    "message": "Last week",
+    "description": "Date group label for last week"
+  },
+  "groupEarlier": {
+    "message": "Earlier",
+    "description": "Date group label for older dates"
+  },
+  "daySunday": { "message": "Sunday" },
+  "dayMonday": { "message": "Monday" },
+  "dayTuesday": { "message": "Tuesday" },
+  "dayWednesday": { "message": "Wednesday" },
+  "dayThursday": { "message": "Thursday" },
+  "dayFriday": { "message": "Friday" },
+  "daySaturday": { "message": "Saturday" },
+  "monthJanuary": { "message": "January" },
+  "monthFebruary": { "message": "February" },
+  "monthMarch": { "message": "March" },
+  "monthApril": { "message": "April" },
+  "monthMay": { "message": "May" },
+  "monthJune": { "message": "June" },
+  "monthJuly": { "message": "July" },
+  "monthAugust": { "message": "August" },
+  "monthSeptember": { "message": "September" },
+  "monthOctober": { "message": "October" },
+  "monthNovember": { "message": "November" },
+  "monthDecember": { "message": "December" },
+  "extensionName": { "message": "History in Sidebar" },
+  "extensionDescription": { "message": "Displays browsing history in the sidebar" },
+  "groupRecent": { "message": "Recent" },
+  "searchMinChars": { "message": "Enter 3+ characters to search" }
+}

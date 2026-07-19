@@ -1,0 +1,81 @@
+{
+  "searchPlaceholder": {
+    "message": "Поиск истории...",
+    "description": "Placeholder for search input"
+  },
+  "openHistoryTooltip": {
+    "message": "Страница истории",
+    "description": "Tooltip for open history button"
+  },
+  "shareTooltip": {
+    "message": "Поделиться",
+    "description": "Tooltip for share button"
+  },
+  "copyTooltip": {
+    "message": "Копировать",
+    "description": "Tooltip for copy button"
+  },
+  "deleteTooltip": {
+    "message": "Удалить",
+    "description": "Tooltip for delete button"
+  },
+  "loadingText": {
+    "message": "Загрузка истории...",
+    "description": "Loading indicator text"
+  },
+  "nothingFound": {
+    "message": "Ничего не найдено",
+    "description": "Text when no history items found"
+  },
+  "itemDeleted": {
+    "message": "Запись удалена",
+    "description": "Toast message when item is deleted"
+  },
+  "copied": {
+    "message": "Скопировано!",
+    "description": "Toast message when link is copied"
+  },
+  "groupToday": {
+    "message": "Сегодня",
+    "description": "Date group label for today"
+  },
+  "groupYesterday": {
+    "message": "Вчера",
+    "description": "Date group label for yesterday"
+  },
+  "groupEarlierThisWeek": {
+    "message": "Ранее на этой неделе",
+    "description": "Date group label for earlier this week"
+  },
+  "groupLastWeek": {
+    "message": "На прошлой неделе",
+    "description": "Date group label for last week"
+  },
+  "groupEarlier": {
+    "message": "Ранее",
+    "description": "Date group label for older dates"
+  },
+  "daySunday": { "message": "Воскресенье" },
+  "dayMonday": { "message": "Понедельник" },
+  "dayTuesday": { "message": "Вторник" },
+  "dayWednesday": { "message": "Среда" },
+  "dayThursday": { "message": "Четверг" },
+  "dayFriday": { "message": "Пятница" },
+  "daySaturday": { "message": "Суббота" },
+  "monthJanuary": { "message": "Январь" },
+  "monthFebruary": { "message": "Февраль" },
+  "monthMarch": { "message": "Март" },
+  "monthApril": { "message": "Апрель" },
+  "monthMay": { "message": "Май" },
+  "monthJune": { "message": "Июнь" },
+  "monthJuly": { "message": "Июль" },
+  "monthAugust": { "message": "Август" },
+  "monthSeptember": { "message": "Сентябрь" },
+  "monthOctober": { "message": "Октябрь" },
+  "monthNovember": { "message": "Ноябрь" },
+  "monthDecember": { "message": "Декабрь" },
+  "extensionName": { "message": "История" },
+  "extensionDescription": { "message": "Показывает историю браузера в сайдбаре" },
+  "groupRecent": { "message": "Недавно" },
+  "searchMinChars": { "message": "Введите 3+ символа для поиска" }
+}
