@@ -3,10 +3,6 @@
     "message": "Поиск истории...",
     "description": "Placeholder for search input"
   },
-  "openHistoryTooltip": {
-    "message": "Страница истории",
-    "description": "Tooltip for open history button"
-  },
   "shareTooltip": {
     "message": "Поделиться",
     "description": "Tooltip for share button"

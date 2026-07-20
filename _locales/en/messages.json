@@ -3,10 +3,6 @@
     "message": "Search history...",
     "description": "Placeholder for search input"
   },
-  "openHistoryTooltip": {
-    "message": "Open history page",
-    "description": "Tooltip for open history button"
-  },
   "shareTooltip": {
     "message": "Share link",
     "description": "Tooltip for share button"
@@ -74,7 +70,7 @@
   "monthOctober": { "message": "October" },
   "monthNovember": { "message": "November" },
   "monthDecember": { "message": "December" },
-  "extensionName": { "message": "History in Sidebar" },
+  "extensionName": { "message": "History" },
   "extensionDescription": { "message": "Displays browsing history in the sidebar" },
   "groupRecent": { "message": "Recent" },
   "searchMinChars": { "message": "Enter 3+ characters to search" }
