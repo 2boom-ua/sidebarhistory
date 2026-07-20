@@ -6,16 +6,16 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #202124;
-  --card-bg: #f8f9fa;
+  --card-bg: #f6f6f6;
   --card-shadow: none;
   --input-border: #dadce0;
   --link-color: #1a73e8;
   --time-color: #5f6368;
   --search-bg: #ffffff;
   --search-text: #202124;
-  --search-bg-hover: #f1f3f4;
+  --search-bg-hover: #f6f6f6;
   --group-color: #5f6368;
-  --hover-bg: #e8eaed;
+  --hover-bg: #e2e2e2;
   --header-color: #202124;
   --tooltip-bg: #ffffff;
   --tooltip-text: #5f6368;
@@ -38,7 +38,7 @@
     --search-text: #e8eaed;
     --search-bg-hover: #3c4043;
     --group-color: #9aa0a6;
-    --hover-bg: #444746;
+    --hover-bg: #555555;
     --header-color: #e8eaed;
     --tooltip-bg: #303134;
     --tooltip-text: #bdc1c6;
@@ -64,8 +64,8 @@
     .search-container {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 12px;
+    gap: 0px;
+    margin-bottom: 10px;
     flex-shrink: 0;
     position: sticky;
     top: 0;
@@ -107,20 +107,20 @@
     #search:focus {
       outline: none;
       border-color: var(--focus-color);
-
       box-shadow: 0 0 0 1px var(--focus-shadow);
     }
 
     #search::placeholder {
       color: var(--time-color);
     }
+
     #search:hover {
       background: var(--search-bg-hover);
     }
     
     .header-btn {
-      width: 28px;
-      height: 28px;
+      width: 20px;
+      height: 20px;
       cursor: pointer;
       background: transparent;
       border: none;
@@ -139,13 +139,13 @@
       height: 16px;
       display: block;
       filter: var(--icon-filter);
-      opacity: 0.5;
+      opacity: 0.7;
       transition: transform 0.2s, opacity 0.2s;
     }
 
     .header-btn:hover img {
       transform: scale(1.05);
-      opacity: 0.7;
+      opacity: 0.9;
     }
 
     .header-btn .tooltip {
@@ -179,7 +179,7 @@
 
     .clear-btn {
       position: absolute;
-      right: 4px;
+      right: 8px;
       top: 50%;
       transform: translateY(-50%);
       width: 20px;
@@ -200,7 +200,7 @@
     }
 
     .clear-btn.visible {
-      opacity: 0.5;
+      opacity: 0.6;
       visibility: visible;
     }
 
@@ -242,7 +242,6 @@
 
     li:hover {
       background: var(--hover-bg);
-
     }
     
     li:hover .time {
@@ -455,10 +454,6 @@
       <input type="text" id="search" placeholder="">
       <button class="clear-btn" id="clearSearchBtn">✕</button>
     </div>
-    <button class="header-btn" id="openHistoryBtn">
-      <img src="icons/open.svg" alt="Open history">
-      <span class="tooltip"></span>
-    </button>
   </div>
   <ul id="history-list"></ul>
   <div id="loadingIndicator"></div>

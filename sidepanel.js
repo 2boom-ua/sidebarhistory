@@ -689,13 +689,9 @@ function handleSearchInput(query) {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOMContentLoaded fired');
 
-  // Focus on search input
-  //document.getElementById('search').focus();
-
   // Set localized texts
   document.getElementById('search').placeholder = getMessage('searchPlaceholder');
   document.getElementById('loadingIndicator').textContent = getMessage('loadingText');
-  document.getElementById('openHistoryBtn').querySelector('.tooltip').textContent = getMessage('openHistoryTooltip');
 
   // Clear search button
   var clearBtn = document.getElementById('clearSearchBtn');
@@ -719,24 +715,6 @@ document.addEventListener('DOMContentLoaded', function() {
     clearBtn.classList.remove('visible');
     searchInput.focus();
     handleSearchInput('');
-  });
-
-  // Open history page
-  var openBtn = document.getElementById('openHistoryBtn');
-  var openTooltip = openBtn.querySelector('.tooltip');
-  
-  openBtn.addEventListener('mouseenter', function(e) {
-    e.stopPropagation();
-    openTooltip.classList.add('show');
-  });
-
-  openBtn.addEventListener('mouseleave', function(e) {
-    e.stopPropagation();
-    openTooltip.classList.remove('show');
-  });
-
-  openBtn.addEventListener('click', function() {
-    chrome.tabs.create({ url: 'chrome://history' });
   });
   
   // Load history
@@ -767,4 +745,52 @@ function positionButtonTooltip(button, tooltip) {
     var shift = rightEdge - window.innerWidth + 10;
     tooltip.style.transform = 'translateX(calc(-50% - ' + shift + 'px))';
   }
+}
+
+// Export all history to CSV
+function exportHistory() {
+  chrome.history.search({ text: '', maxResults: 100000, startTime: 0 }, function(items) {
+    if (chrome.runtime.lastError) {
+      showToast('Error loading history');
+      return;
+    }
+    
+    if (items.length === 0) {
+      showToast('No history to export');
+      return;
+    }
+    
+    // Build CSV
+    var csv = '"Title","URL","Date","Time"\n';
+    items.forEach(function(item) {
+      var title = (item.title || '').replace(/"/g, '""');
+      var url = (item.url || '').replace(/"/g, '""');
+      var date = new Date(item.lastVisitTime);
+      var dateStr = date.getFullYear() + '-' + 
+                    String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+                    String(date.getDate()).padStart(2, '0');
+      var timeStr = String(date.getHours()).padStart(2, '0') + ':' + 
+                    String(date.getMinutes()).padStart(2, '0') + ':' + 
+                    String(date.getSeconds()).padStart(2, '0');
+      csv += '"' + title + '","' + url + '","' + dateStr + '","' + timeStr + '"\n';
+    });
+    
+    // Create and download file
+    var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    var now = new Date();
+    var filename = 'history_export_' + 
+                   now.getFullYear() + '-' + 
+                   String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                   String(now.getDate()).padStart(2, '0') + '.csv';
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showToast('Exported ' + items.length + ' items');
+  });
 }
