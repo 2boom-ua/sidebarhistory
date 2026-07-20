@@ -3,120 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    /* CSS Variables для теми */
-    :root {
-      --bg-color: #f9f9f9;
-      --text-color: #333;
-      --card-bg: #f9f9f9;
-      --card-shadow: none;
-      --input-border: #ccc;
-      --link-color: #1a73e8;
-      --time-color: #777;
-      --search-bg: #fff;
-      --search-text: #333;
-      --group-color: #555;
-      --hover-bg: #e0e0e0;
-      --header-color: #333;
-      --tooltip-bg: #f9f9f9;
-      --tooltip-text: #555;
-      --icon-filter: brightness(0) saturate(100%) invert(29%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
-      --focus-color: #1a73e8;
-      --focus-shadow: rgba(26, 115, 232, 0.2);
-      --radius-button: 4px;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #202124;
+  --card-bg: #f8f9fa;
+  --card-shadow: none;
+  --input-border: #dadce0;
+  --link-color: #1a73e8;
+  --time-color: #5f6368;
+  --search-bg: #ffffff;
+  --search-text: #202124;
+  --search-bg-hover: #f1f3f4;
+  --group-color: #5f6368;
+  --hover-bg: #e8eaed;
+  --header-color: #202124;
+  --tooltip-bg: #ffffff;
+  --tooltip-text: #5f6368;
+  --icon-filter: brightness(0) saturate(100%) invert(38%) sepia(4%) saturate(472%) hue-rotate(169deg) brightness(93%) contrast(90%);
+  --focus-color: #1a73e8;
+  --focus-shadow: rgba(26, 115, 232, 0.25);
+  --radius-button: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #202124;
+    --text-color: #e8eaed;
+    --card-bg: #2d2e30;
+    --card-shadow: none;
+    --input-border: #5f6368;
+    --link-color: #8ab4f8;
+    --time-color: #9aa0a6;
+    --search-bg: #303134;
+    --search-text: #e8eaed;
+    --search-bg-hover: #3c4043;
+    --group-color: #9aa0a6;
+    --hover-bg: #444746;
+    --header-color: #e8eaed;
+    --tooltip-bg: #303134;
+    --tooltip-text: #bdc1c6;
+    --icon-filter: brightness(0) saturate(100%) invert(83%) sepia(4%) saturate(214%) hue-rotate(178deg) brightness(102%) contrast(92%);
+    --focus-color: #8ab4f8;
+    --focus-shadow: rgba(138, 180, 248, 0.25);
+  }
+}
+
+    body {
+    font-family: Segoe UI, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+    margin: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .search-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-color);
+    padding: 4px 0;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #383838;
-        --text-color: white;
-        --card-bg: #383838;
-        --card-shadow: none;
-        --input-border: #555;
-        --link-color: #80ACD6;
-        --time-color: #B9B9C8;
-        --search-bg: #2B2B2B;
-        --search-text: #DBDBEA;
-        --group-color: #B9B9C8;
-        --hover-bg: #4a4a4a;
-        --header-color: white;
-        --tooltip-bg: #383838;
-        --tooltip-text: #ccc;
-        --icon-filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(90%);
-        --focus-color: #80ACD6;
-        --focus-shadow: rgba(128, 172, 214, 0.2);
-      }
+    .search-wrapper {
+    position: relative;
+    flex: 1;
     }
-
-body {
-  font-family: Segoe UI, sans-serif;
-  font-size: 13px;
-  padding: 10px;
-  margin: 0;
-  background: var(--bg-color);
-  color: var(--text-color);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg-color);
-  padding: 4px 0;
-}
-
-.search-wrapper {
-  position: relative;
-  flex: 1;
-}
-
-.search-icon {
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--time-color);
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-#search {
-  width: 100%;
-  padding: 8px 30px 8px 30px;
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  background: var(--search-bg);
-  color: var(--search-text);
-  font-size: 13px;
-  min-width: 0;
-  box-sizing: border-box;
-}
+    
+    .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--time-color);
+    pointer-events: none;
+    opacity: 0.8;
+    
+    }
+    
+    #search {
+    width: 100%;
+    padding: 10px 30px 8px 38px;
+    
+    border: 1px solid var(--input-border);
+    
+    border-radius: 16px;
+    background: var(--search-bg);
+    color: var(--search-text);
+    font-size: 13px;
+    min-width: 0;
+    box-sizing: border-box;
+    }
 
     #search:focus {
       outline: none;
       border-color: var(--focus-color);
+
       box-shadow: 0 0 0 1px var(--focus-shadow);
     }
 
     #search::placeholder {
       color: var(--time-color);
     }
-
+    #search:hover {
+      background: var(--search-bg-hover);
+    }
+    
     .header-btn {
       width: 28px;
       height: 28px;
       cursor: pointer;
       background: transparent;
       border: none;
-      border-radius: var(--radius-button, 4px);
+      border-radius: var(--radius-button, 6px);
       padding: 0;
       flex-shrink: 0;
       display: flex;
@@ -151,7 +159,7 @@ body {
       background: var(--tooltip-bg);
       color: var(--tooltip-text);
       padding: 6px 10px;
-      border-radius: 4px;
+      border-radius: var(--radius-button);
       font-size: 11px;
       white-space: nowrap;
       max-width: 120px;
@@ -200,23 +208,24 @@ body {
       opacity: 0.8 !important;
     }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  overflow-y: auto;
-}
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      overflow-y: auto;
+    }
 
     .group-header {
       font-size: 13px;
       font-weight: 600;
       color: var(--group-color);
       padding: 0px 0 4px 0px;
+      margin-top: 10px;
     }
 
     li {
-      margin-bottom: 1px;
+      margin-bottom: 0px;
       padding: 7px 10px;
       background: var(--card-bg);
       color: var(--text-color);
@@ -224,15 +233,16 @@ ul {
       align-items: center;
       gap: 8px;
       transition: background 0.2s ease;
-      border-radius: 4px;
       cursor: pointer;
       width: 100%;
       box-sizing: border-box;
       position: relative;
     }
+    
 
     li:hover {
       background: var(--hover-bg);
+
     }
     
     li:hover .time {
@@ -243,6 +253,16 @@ ul {
       display: flex;
     }
 
+    .first-in-group {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    
+    .last-in-group {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+    
     .favicon {
       width: 16px;
       height: 16px;
@@ -257,6 +277,7 @@ ul {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      color: var(--group-color);
     }
 
     a {
@@ -284,7 +305,7 @@ ul {
       width: 16px;
       height: 16px;
       cursor: pointer;
-      opacity: 0.6;
+      opacity: 0.8;
       transition: opacity 0.2s ease;
       position: relative;
       background: none;
@@ -307,7 +328,7 @@ ul {
       background: var(--tooltip-bg);
       color: var(--tooltip-text);
       padding: 6px 10px;
-      border-radius: 4px;
+      border-radius: var(--radius-button);
       font-size: 11px;
       white-space: nowrap;
       max-width: 120px;
@@ -349,7 +370,7 @@ ul {
       background: var(--tooltip-bg);
       color: var(--tooltip-text);
       padding: 6px 10px;
-      border-radius: 4px;
+      border-radius: var(--radius-button);
       font-size: 11px;
       max-width: 90%;
       overflow: hidden;
@@ -376,7 +397,7 @@ ul {
       background: var(--tooltip-bg);
       color: var(--tooltip-text);
       padding: 8px 16px;
-      border-radius: 4px;
+      border-radius: var(--radius-button);
       font-size: 13px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       z-index: 2000;
@@ -406,12 +427,12 @@ ul {
     
     ::-webkit-scrollbar-track {
       background: var(--bg-color);
-      border-radius: 4px;
+      border-radius: var(--radius-button);
     }
     
     ::-webkit-scrollbar-thumb {
       background: var(--input-border);
-      border-radius: 4px;
+      border-radius: var(--radius-button);
     }
     
     ::-webkit-scrollbar-thumb:hover {

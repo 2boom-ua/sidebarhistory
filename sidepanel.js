@@ -107,9 +107,9 @@ function normalizeUrl(url) {
 // Cached history items
 var cachedHistoryItems = [];
 
-// Function to load history into cache
-function loadHistoryToCache() {
-  var startTime = Date.now() - (3 * 24 * 60 * 60 * 1000); // 3 days
+// Function to load history into cache with specified days
+function loadHistoryToCache(days) {
+  var startTime = Date.now() - (days * 24 * 60 * 60 * 1000);
   return new Promise(function(resolve, reject) {
     chrome.history.search({ text: '', maxResults: 50000, startTime: startTime }, function(items) {
       if (chrome.runtime.lastError) {
@@ -143,6 +143,62 @@ function loadHistoryToCache() {
       });
 
       cachedHistoryItems = items;
+      resolve(items);
+    });
+  });
+}
+
+// Helper function to process history items (filters + deduplication + sort)
+function processHistoryItems(items) {
+  // Apply filters
+  items = items.filter(function(item) {
+    for (var i = 0; i < filterRules.length; i++) {
+      if (!filterRules[i](item)) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  // Remove duplicates by normalized URL, keep the latest visit
+  var uniqueItems = {};
+  items.forEach(function(item) {
+    var normalizedUrl = normalizeUrl(item.url);
+    if (!uniqueItems[normalizedUrl] || item.lastVisitTime > uniqueItems[normalizedUrl].lastVisitTime) {
+      uniqueItems[normalizedUrl] = item;
+    }
+  });
+  items = Object.values(uniqueItems);
+
+  // Sort by lastVisitTime descending
+  items.sort(function(a, b) {
+    return b.lastVisitTime - a.lastVisitTime;
+  });
+
+  return items;
+}
+
+// Search history - always search by title AND url together across all history
+function searchHistoryAll(query) {
+  return new Promise(function(resolve, reject) {
+    var lowerQuery = query.toLowerCase();
+    
+    // Load all items without time limit (startTime: 0) and max results
+    chrome.history.search({ text: '', maxResults: 100000, startTime: 0 }, function(items) {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+      
+      // Manual filtering by title and URL
+      items = items.filter(function(item) {
+        var titleMatch = item.title && item.title.toLowerCase().includes(lowerQuery);
+        var urlMatch = item.url && item.url.toLowerCase().includes(lowerQuery);
+        return titleMatch || urlMatch;
+      });
+      
+      // Process items (filters + deduplication + sort)
+      items = processHistoryItems(items);
       resolve(items);
     });
   });
@@ -254,7 +310,6 @@ function positionTooltip(element, tooltip) {
   }
 }
 
-// Render history items
 function renderHistory(items, listElement) {
   console.log('renderHistory called with items:', items.length);
   listElement.innerHTML = '';
@@ -296,8 +351,16 @@ function renderHistory(items, listElement) {
       listElement.appendChild(header);
 
       // Render items in this group
-      groups[groupKey].forEach(function(item) {
+      groups[groupKey].forEach(function(item, index) {
         var li = document.createElement('li');
+        
+        if (index === 0) {
+          li.classList.add('first-in-group');
+        }
+        
+        if (index === groups[groupKey].length - 1) {
+          li.classList.add('last-in-group');
+        }
 
         // Title
         var title = item.title || item.url;
@@ -439,7 +502,7 @@ function renderHistory(items, listElement) {
           chrome.history.deleteUrl({ url: item.url }, function() {
             showToast(getMessage('itemDeleted'));
             // Update cache and reload
-            loadHistoryToCache().then(function() {
+            loadHistoryToCache(3).then(function() {
               displayHistory('');
             });
           });
@@ -553,8 +616,17 @@ function loadHistory(query = '') {
   if (cachedHistoryItems.length === 0) {
     listElement.innerHTML = '';
     loadingIndicator.style.display = 'block';
-    loadHistoryToCache().then(function() {
+    loadHistoryToCache(3).then(function() {
       displayHistory(query);
+      // After initial load, load more history in background (14 days)
+      setTimeout(function() {
+        loadHistoryToCache(14).then(function() {
+          // Only update if no search query is active
+          if (!query || query.trim() === '') {
+            displayHistory('');
+          }
+        });
+      }, 1500);
     }).catch(function(error) {
       console.error('Failed to load history:', error);
       loadingIndicator.style.display = 'none';
@@ -591,7 +663,24 @@ function handleSearchInput(query) {
   
   // If 3+ characters, debounce search
   searchDebounceTimer = setTimeout(function() {
-    loadHistory(query);
+    // Search across all history
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.style.display = 'block';
+    
+    searchHistoryAll(query).then(function(items) {
+      loadingIndicator.style.display = 'none';
+      const listElement = document.getElementById('history-list');
+      if (items.length === 0) {
+        listElement.innerHTML = '<li>' + getMessage('nothingFound') + '</li>';
+        return;
+      }
+      renderHistory(items, listElement);
+    }).catch(function(error) {
+      console.error('Search failed:', error);
+      loadingIndicator.style.display = 'none';
+      listElement.innerHTML = '<li>Search error</li>';
+    });
+    
     searchDebounceTimer = null;
   }, 250);
 }
@@ -601,7 +690,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('DOMContentLoaded fired');
 
   // Focus on search input
-  document.getElementById('search').focus();
+  //document.getElementById('search').focus();
 
   // Set localized texts
   document.getElementById('search').placeholder = getMessage('searchPlaceholder');
