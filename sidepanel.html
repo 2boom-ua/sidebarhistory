@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <style>
 :root {
-  --bg-color: #ffffff;
+  --bg-color: #FAFAFB;
   --text-color: #202124;
   --card-bg: #f6f6f6;
   --card-shadow: none;
@@ -15,7 +15,7 @@
   --link-color: #1a73e8;
   --time-color: #5f6368;
   --search-bg: #ffffff;
-  --search-text: #202124;
+  --search-text: #5f6368;
   --search-bg-hover: #f6f6f6;
   --group-color: #5f6368;
   --hover-bg: #e2e2e2;
@@ -30,7 +30,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #202124;
+    --bg-color: #1e1e1e;
     --text-color: #e8eaed;
     --card-bg: #2d2e30;
     --card-shadow: none;
@@ -41,7 +41,7 @@
     --search-text: #e8eaed;
     --search-bg-hover: #3c4043;
     --group-color: #9aa0a6;
-    --hover-bg: #555555;
+    --hover-bg: #3c4043;
     --header-color: #e8eaed;
     --tooltip-bg: #303134;
     --tooltip-text: #bdc1c6;
@@ -83,33 +83,31 @@
     }
     
     .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--time-color);
-    pointer-events: none;
-    opacity: 0.8;
-    
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--time-color);
+        pointer-events: none;
+        opacity: 0.8;
     }
     
     #search {
-    width: 100%;
-    padding: 10px 30px 8px 38px;
-    
-    border: 1px solid var(--input-border);
-    
-    border-radius: 16px;
-    background: var(--search-bg);
-    color: var(--search-text);
-    font-size: 13px;
-    min-width: 0;
-    box-sizing: border-box;
+        width: 100%;
+        padding: 10px 30px 8px 38px;
+        border: 2px solid var(--input-border);
+        border-radius: var(--radius-button);   
+        background: var(--search-bg);
+        color: var(--search-text);
+        font-size: 13px;
+        min-width: 0;
+        box-sizing: border-box;
     }
+
 
     #search:focus {
       outline: none;
-      border-color: var(--focus-color);
+      border-bottom-color: var(--focus-color);
       box-shadow: 0 0 0 1px var(--focus-shadow);
     }
 
@@ -121,65 +119,6 @@
       background: var(--search-bg-hover);
     }
     
-    .header-btn {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      border-radius: var(--radius-button, 6px);
-      padding: 0;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .header-btn img {
-      width: 16px;
-      height: 16px;
-      display: block;
-      filter: var(--icon-filter);
-      opacity: 0.7;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .header-btn:hover img {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-
-    .header-btn .tooltip {
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      transform: none;
-      margin-top: 8px;
-      background: var(--tooltip-bg);
-      color: var(--tooltip-text);
-      padding: 6px 10px;
-      border-radius: var(--radius-button);
-      font-size: 11px;
-      white-space: nowrap;
-      max-width: 120px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      z-index: 1000;
-      pointer-events: none;
-      font-weight: normal;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transition: opacity 0.2s ease;
-    }
-
-    .header-btn .tooltip.show {
-      visibility: visible;
-      opacity: 1;
-    }
-
     .clear-btn {
       position: absolute;
       right: 8px;
@@ -230,7 +169,6 @@
     li {
       margin-bottom: 0px;
       padding: 7px 10px;
-      background: var(--card-bg);
       color: var(--text-color);
       display: flex;
       align-items: center;
@@ -245,6 +183,7 @@
 
     li:hover {
       background: var(--hover-bg);
+      border-radius: 4px;
     }
     
     li:hover .time {
@@ -253,16 +192,6 @@
 
     li:hover .action-buttons {
       display: flex;
-    }
-
-    .first-in-group {
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-    }
-    
-    .last-in-group {
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
     }
     
     .favicon {
@@ -355,6 +284,16 @@
       filter: var(--icon-filter);
     }
 
+.action-btn.active {
+
+    opacity: 1;
+}
+
+.action-btn.active img {
+    opacity: 1;
+}
+
+
     .action-buttons {
       display: none;
       align-items: center;
@@ -445,6 +384,7 @@
       scrollbar-width: thin;
       scrollbar-color: var(--input-border) var(--bg-color);
     }
+
   </style>
 </head>
 <body>

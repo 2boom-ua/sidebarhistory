@@ -51,6 +51,9 @@
     "message": "Earlier",
     "description": "Date group label for older dates"
   },
+  "groupLastMonth": { "message": "Last month" },
+  "domainFilterTooltip": { "message": "Filter by domain" },
+  "domainFilterActiveTooltip": { "message": "Remove domain filter" },
   "daySunday": { "message": "Sunday" },
   "dayMonday": { "message": "Monday" },
   "dayTuesday": { "message": "Tuesday" },

@@ -51,6 +51,9 @@
     "message": "Раніше",
     "description": "Date group label for older dates"
   },
+  "groupLastMonth": { "message": "Минулого місяця" },
+  "domainFilterTooltip": { "message": "Фільтр за доменом" },
+  "domainFilterActiveTooltip": { "message": "Зняти фільтр" },
   "daySunday": { "message": "Неділя" },
   "dayMonday": { "message": "Понеділок" },
   "dayTuesday": { "message": "Вівторок" },
