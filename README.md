@@ -3,15 +3,16 @@
 A Chrome/Edge extension that displays your browsing history in the browser's built-in side panel.
 
 [![License](https://img.shields.io/badge/license-GPLv3-red.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-![Version](https://img.shields.io/badge/version-1.1-green.svg)
+![Version](https://img.shields.io/badge/version-1.2-green.svg)
 
 ## Features
 
 - View browsing history in the side panel
 - Real-time search with debounce (250ms) and minimum 3 characters
-- History grouped by date: Recent, Today, Yesterday, Earlier this week, Last week, Earlier
+- History grouped by date: Recent, Today, Yesterday, Earlier this week, Last week, Last month, Earlier
 - Automatic dark/light theme support
 - Copy, share, or delete individual history entries
+- Filter for domainname
 - Quick open of the full history page
 - Duplicate entries are automatically removed
 - Localized in English, Ukrainian
@@ -36,7 +37,7 @@ Link will be added after publication
 3. Use the search bar to filter history (min 3 characters)
 4. Hover over any entry to see:
    - Full URL (tooltip)
-   - Action buttons: Share, Copy, Delete
+   - Action buttons: Share, Copy, Delete, Filter
 
 ## Localization
 
