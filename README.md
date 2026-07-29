@@ -20,7 +20,7 @@ A Chrome/Edge extension that displays your browsing history in the browser's bui
 ## Installation
 
 ### From Chrome Web Store
-Link will be added after publication
+[![Available in the Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/history/pnkondihekfmjpndemhffmmppgljmblo)
 
 ### Manual Installation (Developer Mode)
 
