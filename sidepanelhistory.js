@@ -871,7 +871,16 @@ const noiseDomains = [
     'twitter.com',
     'threads.net',
     'reddit.com',
-    'pinterest.com'
+    'pinterest.com',
+    'google.com',
+    'googleadservices.com',
+    'googleads.com',
+    'figma.com',
+    'microsoft.com',
+    'openai.com',
+    'deepseek.com',
+    'claude.ai',
+    'chatgpt.com'
 ];
 
 // Noise Reduction: group consecutive same-hostname items for noise domains (only if > 3)
