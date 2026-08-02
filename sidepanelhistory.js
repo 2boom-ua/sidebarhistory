@@ -463,39 +463,39 @@ function renderHistory(items, listElement) {
                 });
 
                 domainBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var domain = this.dataset.domain;
-                var icon = this.querySelector('.domain-icon');
-                var tooltip = this.querySelector('.tooltip');
-                
-                if (currentDomainFilter === domain) {
-                    currentDomainFilter = null;
-                    filteredHistoryItems = cachedHistoryItems.slice();
-                    icon.src = 'icons/domain.svg';
-                    tooltip.textContent = getMessage('domainFilterTooltip');
-                    this.classList.remove('active');
-                    document.querySelectorAll('.action-btn.active').forEach(function(btn) {
-                        btn.classList.remove('active');
-                    });
-                    displayHistory(document.getElementById('search').value);
-                } else {
-                    currentDomainFilter = domain;
-                    filteredHistoryItems = cachedHistoryItems.filter(function(item) {
-                        return getHostname(item.url) === domain;
-                    });
-                    icon.src = 'icons/domain-active.svg';
-                    tooltip.textContent = getMessage('domainFilterActiveTooltip');
-                    document.querySelectorAll('.action-btn.active').forEach(function(btn) {
-                        btn.classList.remove('active');
-                        var btnIcon = btn.querySelector('.domain-icon');
-                        if (btnIcon) btnIcon.src = 'icons/domain.svg';
-                        var btnTooltip = btn.querySelector('.tooltip');
-                        if (btnTooltip) btnTooltip.textContent = getMessage('domainFilterTooltip');
-                    });
-                    this.classList.add('active');
-                    displayHistory(document.getElementById('search').value);
-                }
-            });
+                    e.stopPropagation();
+                    var domain = this.dataset.domain;
+                    var icon = this.querySelector('.domain-icon');
+                    var tooltip = this.querySelector('.tooltip');
+                    
+                    if (currentDomainFilter === domain) {
+                        currentDomainFilter = null;
+                        filteredHistoryItems = cachedHistoryItems.slice();
+                        icon.src = 'icons/domain.svg';
+                        tooltip.textContent = getMessage('domainFilterTooltip');
+                        this.classList.remove('active');
+                        document.querySelectorAll('.action-btn.active').forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        displayHistory(document.getElementById('search').value);
+                    } else {
+                        currentDomainFilter = domain;
+                        filteredHistoryItems = cachedHistoryItems.filter(function(item) {
+                            return getHostname(item.url) === domain;
+                        });
+                        icon.src = 'icons/domain-active.svg';
+                        tooltip.textContent = getMessage('domainFilterActiveTooltip');
+                        document.querySelectorAll('.action-btn.active').forEach(function(btn) {
+                            btn.classList.remove('active');
+                            var btnIcon = btn.querySelector('.domain-icon');
+                            if (btnIcon) btnIcon.src = 'icons/domain.svg';
+                            var btnTooltip = btn.querySelector('.tooltip');
+                            if (btnTooltip) btnTooltip.textContent = getMessage('domainFilterTooltip');
+                        });
+                        this.classList.add('active');
+                        displayHistory(document.getElementById('search').value);
+                    }
+                });
 
                 actionButtons.appendChild(domainBtn);
 
@@ -598,7 +598,6 @@ function renderHistory(items, listElement) {
                     e.stopPropagation();
                     chrome.history.deleteUrl({ url: item.url }, function() {
                         showToast(getMessage('itemDeleted'));
-                        // Update cache and reload
                         loadHistoryToCache(currentLoadDays).then(function() {
                             displayHistory('');
                         });
@@ -654,7 +653,6 @@ function renderHistory(items, listElement) {
 
                 actionButtons.addEventListener('mouseleave', function(e) {
                     e.stopPropagation();
-                    // Show URL tooltip again if li is still hovered
                     if (li.matches(':hover')) {
                         showUrlTooltip();
                     }
@@ -664,6 +662,17 @@ function renderHistory(items, listElement) {
                 li.appendChild(linkContainer);
                 li.appendChild(timeSpan);
                 li.appendChild(actionButtons);
+                
+                // Click on li opens link (except on buttons)
+                li.addEventListener('click', function(e) {
+                    if (!e.target.closest('.action-btn')) {
+                        var link = this.querySelector('a');
+                        if (link) {
+                            link.click();
+                        }
+                    }
+                });
+                
                 listElement.appendChild(li);
             });
         }
