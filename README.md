@@ -1,3 +1,7 @@
+<div align="center">  
+    <img src="https://github.com/2boom-ua/sidebarhistory/blob/main/icons/icon_128.png?raw=true" alt="" width="96" height="96">
+</div>
+
 # History in Sidebar
 
 A Chrome/Edge extension that displays your browsing history in the browser's built-in side panel.
