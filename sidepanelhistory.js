@@ -857,6 +857,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Track history changes
+    chrome.history.onVisited.addListener(function(historyItem) {
+        if (historyItem.url && !historyItem.url.startsWith('chrome://')) {
+            loadHistoryToCache(currentLoadDays).then(function() {
+                var query = document.getElementById('search').value;
+                displayHistory(query);
+            });
+        }
+    });
+
+    chrome.history.onVisitRemoved.addListener(function(removed) {
+        if (removed.allHistory || (removed.urls && removed.urls.length > 0)) {
+            loadHistoryToCache(currentLoadDays).then(function() {
+                var query = document.getElementById('search').value;
+                displayHistory(query);
+            });
+        }
+    });
+    
     loadHistory('');
 });
 
