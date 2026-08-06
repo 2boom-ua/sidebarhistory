@@ -668,7 +668,7 @@ function renderHistory(items, listElement) {
                     if (!e.target.closest('.action-btn')) {
                         var link = this.querySelector('a');
                         if (link) {
-                            link.click();
+                            chrome.tabs.create({ url: link.href });
                         }
                     }
                 });
