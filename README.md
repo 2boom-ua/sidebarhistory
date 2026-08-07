@@ -25,7 +25,7 @@ A Chrome/Edge extension that displays your browsing history in the browser's bui
 
 ### From Chrome Web Store or Edge Add-ons
 [![Available in the Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/history/pnkondihekfmjpndemhffmmppgljmblo)
-[![Available in the Microsoft Edge Add-ons](https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-Get-0078D7?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/history/dblkapdledlknpnjhjfcbjibdbijkkel)
+[![Available in Microsoft Edge Add-ons](https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-Install-0078D7?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/history/dblkapdledlknpnjhjfcbjibdbijkkel)
 
 
 ### Manual Installation (Developer Mode)
