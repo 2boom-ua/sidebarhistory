@@ -417,9 +417,8 @@ function renderHistory(items, listElement) {
                 var linkContainer = document.createElement('span');
                 linkContainer.className = 'link-container';
                 var link = document.createElement('a');
-                link.href = item.url;
-                link.target = '_blank';
                 link.textContent = title;
+                link.style.cursor = 'pointer';
                 linkContainer.appendChild(link);
 
                 // Time
@@ -666,10 +665,7 @@ function renderHistory(items, listElement) {
                 // Click on li opens link (except on buttons)
                 li.addEventListener('click', function(e) {
                     if (!e.target.closest('.action-btn')) {
-                        var link = this.querySelector('a');
-                        if (link) {
-                            chrome.tabs.create({ url: link.href });
-                        }
+                        chrome.tabs.create({ url: item.url });
                     }
                 });
                 
