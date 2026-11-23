@@ -74,7 +74,7 @@
   "monthNovember": { "message": "Листопад" },
   "monthDecember": { "message": "Грудень" },
   "extensionName": { "message": "Історія" },
-  "extensionDescription": { "message": "Показує історію браузера в сайдбарі" },
+  "extensionDescription": { "message": "Швидкий доступ до історії у бічній панелі" },
   "groupRecent": { "message": "Нещодавно" },
   "searchMinChars": { "message": "Введіть 3+ символи для пошуку" }
 }

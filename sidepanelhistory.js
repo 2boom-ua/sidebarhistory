@@ -342,6 +342,90 @@ function filterByDomain(domain) {
     displayHistory(document.getElementById('search').value);
 }
 
+var defaultFaviconPromise = null;
+
+function browserFaviconUrl(pageUrl, size) {
+    var u = new URL(chrome.runtime.getURL('/_favicon/'));
+    u.searchParams.set('pageUrl', pageUrl);
+    u.searchParams.set('size', size);
+    return u.toString();
+}
+
+function getImageSignature(img) {
+    try {
+        var c = document.createElement('canvas');
+        c.width = 16;
+        c.height = 16;
+        var ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, 16, 16);
+        var d = ctx.getImageData(0, 0, 16, 16).data;
+        var h = 0;
+        for (var i = 0; i < d.length; i++) {
+            h = (h * 31 + d[i]) | 0;
+        }
+        return h;
+    } catch (e) {
+        return null;
+    }
+}
+
+// Signature of the generic icon the browser returns when it has no favicon
+function getDefaultFaviconSignature() {
+    if (!defaultFaviconPromise) {
+        defaultFaviconPromise = new Promise(function(resolve) {
+            var ref = new Image();
+            ref.onload = function() { resolve(getImageSignature(ref)); };
+            ref.onerror = function() { resolve(null); };
+            ref.src = browserFaviconUrl('https://favicon-reference.invalid/', 32);
+        });
+    }
+    return defaultFaviconPromise;
+}
+
+function loadFavicon(img, url) {
+    var DEFAULT_ICON = 'icons/favicon-default.svg';
+    var domain;
+    try {
+        domain = new URL(url).hostname;
+    } catch (e) {
+        img.src = DEFAULT_ICON;
+        return;
+    }
+
+    img.src = DEFAULT_ICON;   // placeholder until a real icon is found
+
+    function probe(src, isValid, onOk, onFail) {
+        var p = new Image();
+        p.onload = function() { isValid(p) ? onOk(src) : onFail(); };
+        p.onerror = onFail;
+        p.src = src;
+    }
+
+    function useIcon(src) {
+        img.src = src;
+    }
+
+    function tryIconHorse() {
+        probe('https://icon.horse/icon/' + domain, function() { return true; }, useIcon, function() {});
+    }
+
+    function tryGoogle() {
+        probe('https://www.google.com/s2/favicons?domain=' + domain + '&sz=32',
+            function(p) { return p.naturalWidth >= 32; },
+            useIcon, tryIconHorse);
+    }
+
+    getDefaultFaviconSignature().then(function(defaultSig) {
+        probe(browserFaviconUrl(url, 32),
+            function(p) {
+                if (defaultSig === null) return true;
+                var sig = getImageSignature(p);
+                return sig === null || sig !== defaultSig;
+            },
+            useIcon, tryGoogle);
+    });
+}
+
 function renderHistory(items, listElement) {
     // Apply Noise Reduction
     items = noiseReduction(items);
@@ -403,15 +487,7 @@ function renderHistory(items, listElement) {
                 // Favicon
                 var faviconImg = document.createElement('img');
                 faviconImg.className = 'favicon';
-                try {
-                    var domain = new URL(item.url).hostname;
-                    faviconImg.src = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=16';
-                } catch (e) {
-                    faviconImg.src = 'icons/favicon-default.svg';
-                }
-                faviconImg.onerror = function() {
-                    this.src = 'icons/favicon-default.svg';
-                };
+                loadFavicon(faviconImg, item.url);
 
                 // Link
                 var linkContainer = document.createElement('span');
